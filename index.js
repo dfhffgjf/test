@@ -115,6 +115,7 @@ Vue.createApp({
         },
         checkCID() {
             if(this.cid != '') {
+                this.cid = this.cid.trim()
                 this.cid = this.cid.replace(' ', '')
                 var regexp = /[а-яё]/i;
                 if (this.cid.length > 4 || regexp.test(this.cid)) {
