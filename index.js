@@ -25,7 +25,8 @@ Vue.createApp({
             nameUser: '',
             age: '',
             forumID: '',
-            email: ''
+            email: '',
+            loader: true
         }
     },
     methods: {
@@ -42,6 +43,12 @@ Vue.createApp({
             } else if (name === 'age') {
                 if(this.age != '') {
                     this.age = this.age.replace(' ', '')
+                    var regexp = /[а-яa-zё]/i;
+                    if(regexp.test(this.age)) {
+                        this.age = ''
+                        this.errors.push('Возраст введен некоректно');
+                        return false;
+                    }
                     nums = parseInt(this.age)
                     if (isNaN(nums)) {
                         this.age = ''
@@ -91,12 +98,17 @@ Vue.createApp({
                     if(this.nickName.includes(' ')) {
                         if (regexp.test(this.nickName)) {
                             this.nickName = ''
-                            this.errors.push('Ник введено некоректно!')
+                            this.errors.push('Ник введен некоректно!')
+                        } else {
+                            let checkCount = this.nickName.split(' ')
+                            if (checkCount.length != 2) {
+                                this.nickName = ''
+                                this.errors.push('Ник введен некоректно!')
+                            }
                         }
                     } else {
-                        this.name = this.name.trim()
                         this.nickName = ''
-                        this.errors.push('Ник введено некоректно!')
+                        this.errors.push('Ник введен некоректно!')
                     }
                 }
 
@@ -104,7 +116,11 @@ Vue.createApp({
                 if(this.nameUser != '') {
                     this.nameUser = this.nameUser.trim()
                     if(this.nameUser.includes(' ')) {
-
+                        let checkCount = this.nameUser.split(' ')
+                        if (checkCount.length != 2) {
+                            this.nameUser = ''
+                            this.errors.push('Имя введено некоректно!')
+                        }
                     } else {
                         this.nameUser = ''
                         this.errors.push('Имя введено некоректно!')
@@ -126,7 +142,9 @@ Vue.createApp({
         }
     },
     mounted() {
-        console.log('Hello!')
+        setTimeout(() => {
+            this.loader = false
+        }, 1000)
     }
 
 }).mount('#app')
