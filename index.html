@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../base/css/baseStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="logo-img">
+        <a href="#"><img src="img/logo.svg" alt=""></a>
+    </div>
+
+    <div class="block-img anim">
+        <img src="img/bg01.png" alt="">
+    </div>
+
+    <div class="block" id="app">
+        <div class="block-form">
+            <div class="form-base">
+                <div class="form-title">
+                    <h1>Заполнения формы</h1>
+                    <p>Просьба заполнить всю верную инфомрацию!</p>
+                </div>
+                <form action="">
+                    <div class="form-content">
+                        <input type="text" v-model="nickName" @blur="checkName()" name="" placeholder="Ваш ник в игре">
+                        <input type="text" v-model="cid" @blur="checkCID()" name="" placeholder="Ваш CID в игре">
+                        <input type="text" v-model="vkID" @blur="checkNums('vk')" name="" placeholder="Ваш ID ВКонтакте">
+                        <input type="text" v-model="name" @blur="checkName(false)" name="" placeholder="Ваше имя и фамилия">
+                        <input type="text" v-model="age" @blur="checkNums('age')" name="" placeholder="Ваш возраст">
+                        <input type="text" v-model="forumID" @blur="checkNums('fID')" name="" placeholder="Ваш ID аккаунта на форуме">
+                        <input type="text" v-model="email" @blur="checkMail()" name="" placeholder="Ваша почта">
+                        <input type="submit" value="Отправить форму">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="block-errors">
+            <div class="error-card" v-for="error in errors">
+                <p>{{error}}</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="index.js"></script>
+</body>
+</html>

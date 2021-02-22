@@ -1,0 +1,180 @@
+body {
+  overflow: hidden;
+}
+
+.logo-img {
+  position: absolute;
+  margin: 2% 5%;
+  z-index: 99;
+  & a {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media (max-width: 450px) {
+    & {
+      width: 100%;
+      margin: 0;
+      margin-top: 5%;
+      & a {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.block {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.block-img {
+  & img {
+    width: 50%;
+    position: absolute;
+    right: 2%;
+    bottom: 0;
+    z-index: -1;
+    transform: translate(200%, 0);
+  }
+
+  @media (max-width: 740px) {
+    & img {
+      right: 0;
+    }
+  }
+
+  @media (max-width: 568px) {
+    & img {
+      display: none;
+    }
+  }
+
+  &.active {
+    & img {
+      transition: 1s;
+      transform: translate(0, 0) !important;
+    }
+  }
+}
+
+.block-form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & .form-base {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  & .form-title {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 15px;
+
+    & h1 {
+      font-size: 32px;
+    }
+
+    & p {
+      font-size: 16px;
+      color: #ABABAB;
+    }
+  }
+
+  & .form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+
+    & input[type=text] {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #ABABAB;
+      outline: none;
+      position: relative;
+      margin-bottom: 5%;
+      padding: 5px 10px;
+      font-family: 'DinDisplay';
+
+
+      &::placeholder {
+        font-family: 'DinDisplay';
+      }
+    }
+
+    & input[type=submit] {
+      height: 60px;
+      width: 100%;
+      border: none;
+      background-color: #9C93DE;
+      color: white;
+    }
+  }
+}
+
+.block-errors {
+  position: absolute;
+  left: 0;
+  bottom: 5%;
+  min-width: 20%;
+
+  padding: 0 10px;
+
+  & .error-card {
+    opacity: 0;
+    animation: animError 5s;
+    background-color: #F7E5E5;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+
+    & p {
+      color: red;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      width: 2px;
+      background-color: red;
+      animation: animBefore 1s;
+    }
+  }
+}
+
+@keyframes animError {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animBefore {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
