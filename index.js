@@ -22,7 +22,7 @@ Vue.createApp({
             nickName: '',
             cid: '',
             vkID: '',
-            name: '',
+            nameUser: '',
             age: '',
             forumID: '',
             email: ''
@@ -32,6 +32,7 @@ Vue.createApp({
         checkNums(name) {
             if (name === 'vk') {
                 if(this.vkID != '') {
+                    this.vkID = this.vkID.replace(' ', '')
                     nums = parseInt(this.vkID)
                     if (isNaN(nums)) {
                         this.vkID = ''
@@ -40,6 +41,7 @@ Vue.createApp({
                 }
             } else if (name === 'age') {
                 if(this.age != '') {
+                    this.age = this.age.replace(' ', '')
                     nums = parseInt(this.age)
                     if (isNaN(nums)) {
                         this.age = ''
@@ -48,6 +50,7 @@ Vue.createApp({
                 }
             } else {
                 if(this.forumID != '') {
+                    this.forumID = this.forumID.replace(' ', '')
                     nums = parseInt(this.forumID)
                     if (isNaN(nums)) {
                         this.forumID = ''
@@ -59,6 +62,7 @@ Vue.createApp({
         },
         checkMail() {
             if(this.email != '') {
+                this.email = this.email.replace(' ', '')
                 if(this.email.includes('@')) {
                     if(this.email.includes('.')) {
 
@@ -76,20 +80,23 @@ Vue.createApp({
         checkName(nickName = true) {
             if (nickName) {
                 if(this.nickName != '') {
+                    this.nickName = this.nickName.trim()
                     if(this.nickName.includes(' ')) {
 
                     } else {
+                        this.name = this.name.trim()
                         this.nickName = ''
                         this.errors.push('Ник введено некоректно!')
                     }
                 }
 
             } else {
-                if(this.name != '') {
-                    if(this.name.includes(' ')) {
+                if(this.nameUser != '') {
+                    this.nameUser = this.nameUser.trim()
+                    if(this.nameUser.includes(' ')) {
 
                     } else {
-                        this.name = ''
+                        this.nameUser = ''
                         this.errors.push('Имя введено некоректно!')
                     }
                 }
@@ -98,7 +105,11 @@ Vue.createApp({
         },
         checkCID() {
             if(this.cid != '') {
+                this.cid = this.cid.replace(' ', '')
                 if (this.cid.length > 4) {
+                    this.errors.push('CID введено некоректно!')
+                    this.cid = ''
+                } else if(this.cid.contains('f')) {
                     this.errors.push('CID введено некоректно!')
                     this.cid = ''
                 }
