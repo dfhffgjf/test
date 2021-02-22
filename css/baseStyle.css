@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "DinDisplay";
+  src: local("DinDisplay"), local("DinDisplay"), url("../fonts/PFDinDisplayPro-Regular.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "DinDisplay";
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=baseStyle.css.map */
