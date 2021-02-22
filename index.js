@@ -62,6 +62,12 @@ Vue.createApp({
         },
         checkMail() {
             if(this.email != '') {
+                var regexp = /[а-яё]/i;
+                if (regexp.test(this.email)) {
+                    this.errors.push('E-mail введен некоректно regexp!')
+                    this.email = ''
+                    return;
+                }
                 this.email = this.email.replace(' ', '')
                 if(this.email.includes('@')) {
                     if(this.email.includes('.')) {
@@ -81,8 +87,12 @@ Vue.createApp({
             if (nickName) {
                 if(this.nickName != '') {
                     this.nickName = this.nickName.trim()
+                    var regexp = /[а-яё]/i;
                     if(this.nickName.includes(' ')) {
-
+                        if (regexp.test(this.nickName)) {
+                            this.nickName = ''
+                            this.errors.push('Ник введено некоректно!')
+                        }
                     } else {
                         this.name = this.name.trim()
                         this.nickName = ''
@@ -106,10 +116,8 @@ Vue.createApp({
         checkCID() {
             if(this.cid != '') {
                 this.cid = this.cid.replace(' ', '')
-                if (this.cid.length > 4) {
-                    this.errors.push('CID введено некоректно!')
-                    this.cid = ''
-                } else if(this.cid.contains('f')) {
+                var regexp = /[а-яё]/i;
+                if (this.cid.length > 4 || regexp.test(this.cid)) {
                     this.errors.push('CID введено некоректно!')
                     this.cid = ''
                 }
