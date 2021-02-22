@@ -103,6 +103,17 @@ body {
   color: white;
 }
 
+.content-loader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 50%;
+}
+
+[v-cloak] {
+  display: none;
+}
+
 .block-errors {
   position: absolute;
   left: 0;
